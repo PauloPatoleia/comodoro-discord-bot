@@ -14,10 +14,14 @@ bot.on("message", (message) => {
         message.reply("good decision. We will be waiting for your return.")
          setTimeout(
     function() {
-        message.member.addRole("493907904555122698").catch(console.error)
-        console.log('USER unmuted')
-        message.reply(" welcome back!")
-    }, 100000);
+        if(message.member.roles.has(493907904555122698)) {
+          
+        } else {
+          message.member.addRole("493907904555122698").catch(console.error)
+          message.reply(" welcome back!")
+        }
+        
+    }, 1500000);
         
         
     } 
