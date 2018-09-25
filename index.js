@@ -5,13 +5,17 @@ var discord = require("discord.js")
 var bot = new discord.Client()
 
 bot.on("message", (message) => {
+    
 
     if (message.content.startsWith('!work')) {
         
+         var args = message.content.slice().trim().split(/ +/g);
+         var time = args[1] * 60000
+         console.log(time)
         
         // 493907904555122698
         message.member.removeRole("493907904555122698").catch(console.error);
-        message.reply("good decision. We will be waiting for your return.")
+        message.reply(`good decision. We will be waiting for your return in ${args[1] || 25} minutes.`)
          setTimeout(
     function() {
         if(message.member.roles.has(493907904555122698)) {
@@ -21,7 +25,7 @@ bot.on("message", (message) => {
           message.reply(" welcome back!")
         }
         
-    }, 1500000);
+    }, time || 150000000);
         
         
     } 
