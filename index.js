@@ -4,6 +4,7 @@ var discord = require("discord.js")
 
 var bot = new discord.Client()
 
+
 bot.on("message", (message) => {
     
 
@@ -13,18 +14,26 @@ bot.on("message", (message) => {
          var args = message.content.slice().trim().split(/ +/g)
          var time = args[1] * 60000
          
+         
           if(isNaN(time)) {
               message.reply(`do you want to be muted forever?`)
-          } else {
+          } 
+          
+          if(args[1] < 25) {
+                 message.reply(`only ${args[1]} minutes? Are u fucking kidding me?`)
+            } else {
               
                // 493907904555122698
         message.member.removeRole("493907904555122698").catch(console.error);
         message.reply(`good decision. We will be waiting for your return in ${args[1] || 25} minutes.`)
          setTimeout(
+    
+    
     function() {
         if(message.member.roles.has(493907904555122698)) {
           
         } else {
+            
           message.member.addRole("493907904555122698").catch(console.error)
           message.reply(" welcome back!")
         }
